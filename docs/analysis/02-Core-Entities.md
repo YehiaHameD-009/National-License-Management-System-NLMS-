@@ -51,6 +51,28 @@ must be associated with the existing Driver record.
 
 ***************************
 ***************************
+Entity Name:
+SystemUser
+
+Purpose:
+Represents a person who is authorized to access and operate the system.
+
+Important Attributes
+- Username
+- Password
+- IsActive / IsFrozen
+
+RelationShips:
+- One Person can be linked to one SystemUser.
+- One SystemUser can perform many system operations
+
+Important Notes:
+Not every Person is a SystemUser.
+User account must be linked to an existing Person.
+User account can be frozen without deletion
+
+***************************
+***************************
 
 Entity Name:
 service
@@ -142,6 +164,8 @@ Important Attributes:
 Important Notes:
 - A driver can't own more than one license in same class.
 - A driver can own multiple licenses of different classes.
+- License status may change during its lifecycle.
+- License can become Held.
 
 ***************************
 ***************************
@@ -164,6 +188,30 @@ Relationships:
 
 Important Notes:
 - Vision Test, Theory Test, and Practical Test are predefined test types.
+
+***************************
+***************************
+
+Entity Name:
+LicenseHold
+
+Purpose:
+Represents a hold event applied to a license including the reason, fine amount, and hold date.
+
+Important Attributes:
+- HoldID
+- HoldDate
+- HoldReason
+- FineAmount
+
+Relationships:
+- One License can have many Hold events.
+- Each Hold event belongs to one License.
+
+Important Notes:
+- Hold behaves as a business event.
+- Hold history should be retained.
+- A license may be held multiple times during its lifetime.
 
 ***************************
 ***************************
